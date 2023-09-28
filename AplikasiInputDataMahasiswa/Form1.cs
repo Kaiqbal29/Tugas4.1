@@ -102,39 +102,37 @@ namespace AplikasiInputDataMahasiswa
             // lakukan perulangan untuk menampilkan data mahasiswa ke listview
             foreach (var mhs in list)
             {
-                if (int.TryParse(txtNilai.Text, out int Nilai))
+                string nilaiHuruf = "";
+                // Hitung nilai huruf berdasarkan nilai numerik
+                if (mhs.Nilai >= 0 && mhs.Nilai <= 20)
                 {
-                    string nilaiHuruf = "";
-                    if (Nilai >= 0 && Nilai <= 20)
-                    {
-                        nilaiHuruf = "E";
-                    }
-                    else if (Nilai >= 21 && Nilai <= 40)
-                    {
-                        nilaiHuruf = "D";
-                    }
-                    else if (Nilai >= 41 && Nilai <= 60)
-                    {
-                        nilaiHuruf = "C";
-                    }
-                    else if (Nilai >= 61 && Nilai <= 80)
-                    {
-                        nilaiHuruf = "B";
-                    }
-                    else if (Nilai >= 81 && Nilai <= 100)
-                    {
-                        nilaiHuruf = "A";
-                    }
-
-                    var noUrut = lvwMahasiswa.Items.Count + 1;
-                    var item = new ListViewItem(noUrut.ToString());
-                    item.SubItems.Add(mhs.Nim);
-                    item.SubItems.Add(mhs.Nama);
-                    item.SubItems.Add(mhs.Kelas);
-                    item.SubItems.Add(mhs.Nilai.ToString());
-                    item.SubItems.Add(nilaiHuruf.ToString());
-                    lvwMahasiswa.Items.Add(item);
+                    nilaiHuruf = "E";
                 }
+                else if (mhs.Nilai >= 21 && mhs.Nilai <= 40)
+                {
+                    nilaiHuruf = "D";
+                }
+                else if (mhs.Nilai >= 41 && mhs.Nilai <= 60)
+                {
+                    nilaiHuruf = "C";
+                }
+                else if (mhs.Nilai >= 61 && mhs.Nilai <= 80)
+                {
+                    nilaiHuruf = "B";
+                }
+                else if (mhs.Nilai >= 81 && mhs.Nilai <= 100)
+                {
+                    nilaiHuruf = "A";
+                }
+
+                var noUrut = lvwMahasiswa.Items.Count + 1;
+                var item = new ListViewItem(noUrut.ToString());
+                item.SubItems.Add(mhs.Nim);
+                item.SubItems.Add(mhs.Nama);
+                item.SubItems.Add(mhs.Kelas);
+                item.SubItems.Add(mhs.Nilai.ToString());
+                item.SubItems.Add(nilaiHuruf);
+                lvwMahasiswa.Items.Add(item);
             }
         }
 
